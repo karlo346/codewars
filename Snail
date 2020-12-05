@@ -1,0 +1,35 @@
+def snail(snail_map):
+    map = []
+    h = 0
+    x = int(len(snail_map[0]))
+    y = (x*2) - 1
+    if len(snail_map[0]) != 0:
+        while True: 
+            for i in snail_map[0]:                                #right
+                map.append(i)
+            del snail_map[0]
+            h += 1
+            if h == y:
+                break
+            for i in snail_map:                                 #down
+                map.append(i[len(i)-1])
+                del i[len(i)-1]
+            h += 1 
+            if h == y:
+                break        
+            for i in range(len(snail_map) - 1, -1 , -1):             #left
+                map.append(snail_map[len(snail_map) - 1][i])
+            del snail_map[len(snail_map)-1]        
+            h += 1        
+            if h == y:
+                break        
+            for i in range(len(snail_map) - 1, -1, -1):         #up
+                map.append(snail_map[i][0])
+                del snail_map[i][0]         
+            h += 1        
+            if h == y:
+                break   
+    else:        
+        return(snail_map[0])   
+    return(map)
+    pass
