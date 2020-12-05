@@ -1,0 +1,21 @@
+def get_row(x): #REFERENCE : https://www.jstage.jst.go.jp/article/keidaironshu/64/1/64_KJ00008631539/_pdf
+    perfect_roots = [3 ** root + 1 for root in range(10) if 3 ** root <= 100000][::-1] 
+    new_row = []
+    if len(x) != 1:
+        for i in perfect_roots:      
+            while len(x) >= i:
+                new_row = []
+                for j in range(0, len(x) - i + 1): 
+                    if x[j] == x[j + i - 1]:
+                        new_row.append(x[j]) 
+                    else:
+                        new_row.append(({'R','G','B'} - {x[j], x[j + i - 1]}).pop())  
+                x = new_row 
+                if len(x) == 1:
+                    break
+    else:
+        new_row.append(x)        
+    return(new_row) 
+def triangle(row):
+    return(get_row(row)[0])
+    pass
