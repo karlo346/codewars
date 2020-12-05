@@ -1,0 +1,10 @@
+def sum_of_intervals(intervals):
+    numbersss = []
+    
+    for interval in intervals:
+        
+        for i in range(interval[0],interval[1]):
+            
+            numbersss.append(i)
+            
+    return len(set(numbersss))
