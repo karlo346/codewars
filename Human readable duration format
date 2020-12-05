@@ -1,0 +1,69 @@
+def format_duration(seconds):
+    if seconds == 0:
+        return('now')      
+    y, d, h, m, s, i, years, days, hours, minutes = 0, 0, 0, 0, 0, seconds, 31536000, 86400, 3600, 60    
+    while i >= years: #years
+        proxy_i = i - years
+        if proxy_i < years:
+            i = proxy_i + years
+            y += 1
+            break
+        i -= years
+        y += 1
+    while i >= days: #days
+        proxy_i = i - days
+        if proxy_i < days:
+            i = proxy_i + days
+            d += 1
+            if d == 365:
+                d = 0
+            break
+        i -= days
+        d += 1
+        if d == 365:
+            d = 0
+    while i >= hours: #hours
+        proxy_i = i - hours
+        if proxy_i < hours:
+            i = proxy_i + hours
+            h += 1
+            if h == 24:
+                h = 0
+            break
+        i -= hours
+        h += 1
+        if h == 24:
+            h = 0
+    while i >= minutes: #minutes
+        proxy_i = i - minutes
+        if proxy_i < minutes:
+            i = proxy_i + minutes
+            m += 1
+            if m == minutes:
+                m = 0
+            break
+        i -= minutes
+        m += 1
+        if m == minutes:
+            m = 0
+    while i > 0: #seconds
+        i -= 1
+        s += 1
+        if s == minutes:
+            s = 0       
+    d = [y,d,h,m,s]
+    units = [' year', ' day', ' hour', ' minute', ' second']
+    final = []
+    for i in range(0, 5):  
+        if d[i] == 0:
+            continue  
+        if d[i] > 1:     
+            final.append(str(d[i]) + units[i] + 's')   
+        elif d[i] == 1:
+            final.append(str(d[i]) + units[i])
+    if len(final) > 1: 
+        finall = ', '.join(final[0:len(final) - 1])
+        finall += ' and ' + final[len(final) - 1]
+    else:
+        finall = ', '.join(final)
+    return(finall)
